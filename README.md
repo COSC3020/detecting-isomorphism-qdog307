@@ -15,3 +15,21 @@ the function and run automatically when you commit through a GitHub action.
 ## Runtime Analysis
 
 What is the worst-case big $\Theta$ time complexity of your algorithm?
+
+## Analysis 
+
+
+The runtime of the `are_isomorphic` function is dominated by the factorial growth of generating all permutations of \( |V| \) vertices, which has a complexity of \( O(|V|!) \). For each permutation, validating adjacency relations involves iterating over all vertex pairs, adding a cost of \( O(|V|^2) \). Thus, the overall worst-case runtime complexity simplifies to:
+
+$$
+O(|V|! \cdot |V|^2)
+$$
+
+This reflects the factorial growth of permutation generation combined with the quadratic cost of validation for each permutation. While computationally expensive, this brute-force approach avoids unnecessary overhead and is practical for small graphs.
+
+## Sources
+
+For the sources I used the graph lecture slides to help with runtime anaylsis. I looked up Graph Isomorphsim on geeksforgeeks. https://www.geeksforgeeks.org/tree-isomorphism-problem/. I took what I learned from the assigmnet of Isomorphism Nodes Connectivity and applied to this code. I ran into issues with my intial code and asked chatGPT for some tips. Pointed in the direction of a brute force like algorithm but did not take any code. ChatGPt also helpled generate my test code.  
+
+I certify that I have listed all sources used to complete this exercise, including the use of any Large Language Models. All of the work is my own, except where stated otherwise. I am aware that plagiarism carries severe penalties and that if plagiarism is suspected, charges may be filed against me without prior notice.
+
