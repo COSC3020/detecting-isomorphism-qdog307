@@ -21,8 +21,10 @@ jobs:
       with:
         node-version: '16'
 
-    - name: Install Dependencies
-      run: npm install
+    - name: Create package.json
+      run: |
+        echo '{}' > package.json
+        npm install jsverify --save-dev
 
     - name: Run Tests
       run: node test.code.js
