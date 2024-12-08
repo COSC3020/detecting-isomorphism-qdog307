@@ -63,3 +63,42 @@ const graph13 = [
     [1, 1, 1, 0],
 ]; // Fully connected four-node graph
 
+const testCases = [
+    { graph1: graph1, graph2: graph2, expected: true, description: "Single-node graphs without self-loops" },
+    { graph1: graph1, graph2: graph3, expected: false, description: "Single-node graph with and without self-loop" },
+    { graph1: graph4, graph2: graph5, expected: true, description: "Two connected nodes" },
+    { graph1: graph4, graph2: graph6, expected: false, description: "Two connected vs disconnected nodes" },
+    { graph1: graph7, graph2: graph8, expected: true, description: "Three-node chain graphs" },
+    { graph1: graph7, graph2: graph9, expected: false, description: "Three-node chain vs fully connected graph" },
+    { graph1: graph11, graph2: graph12, expected: true, description: "Four-node cycle graphs (square vs square)" },
+    { graph1: graph11, graph2: graph13, expected: false, description: "Four-node cycle graph vs fully connected graph" },
+];
+
+// Test runner
+function runTests() {
+    console.log("Running tests...");
+
+    // Track overall success
+    let allTestsPassed = true;
+
+    // Run each test case
+    testCases.forEach(({ graph1, graph2, expected, description }, index) => {
+        const result = are_isomorphic(graph1, graph2);
+        if (result !== expected) {
+            console.error(`Test Case ${index + 1} Failed: ${description}\nExpected: ${expected}, Got: ${result}`);
+            allTestsPassed = false;
+        } else {
+            console.log(`Test Case ${index + 1} Passed: ${description}`);
+        }
+    });
+
+    // Final summary
+    if (allTestsPassed) {
+        console.log("All tests passed!");
+    } else {
+        console.error("Some tests failed.");
+    }
+}
+
+// Run the tests
+runTests();
