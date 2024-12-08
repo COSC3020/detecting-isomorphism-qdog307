@@ -29,7 +29,7 @@ This reflects the factorial growth of permutation generation combined with the q
 
 ## Sources
 
-For the sources I used the graph lecture slides to help with runtime anaylsis. I looked up Graph Isomorphsim on geeksforgeeks. https://www.geeksforgeeks.org/tree-isomorphism-problem/. I took what I learned from the assigmnet of Isomorphism Nodes Connectivity and applied to this code. I ran into issues with my intial code and asked chatGPT for some tips. Pointed in the direction of a brute force like algorithm but did not take any code. ChatGPt also helpled generate my test code.  
+For the sources I used the graph lecture slides to help with runtime anaylsis. I looked up Graph Isomorphsim on geeksforgeeks. https://www.geeksforgeeks.org/tree-isomorphism-problem/. I took what I learned from the assigmnet of Isomorphism Nodes Connectivity and applied to this code. I ran into issues with my intial code and asked chatGPT for some tips. Pointed in the direction of a brute force like algorithm but did not take any code. I scrapped the whole initial setup and started over again. I stuck with the idea of brute force but I tried to simpifly the test code. I looked at Hrics12-1 and Will-Greiner to see that it was easier to just test my own graphs than generating them so that I for sure knew what the resulst were. The graphs are my own though just the idea. 
 
 I certify that I have listed all sources used to complete this exercise, including the use of any Large Language Models. All of the work is my own, except where stated otherwise. I am aware that plagiarism carries severe penalties and that if plagiarism is suspected, charges may be filed against me without prior notice.
 
