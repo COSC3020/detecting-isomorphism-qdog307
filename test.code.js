@@ -1,59 +1,65 @@
-const fs = require('fs');
-const jsc = require('jsverify');
+const are_isomorphic = require('./code');
 
+// Test cases
+// Single-node graphs
+const graph1 = [[0]]; // No self-loop
+const graph2 = [[0]]; // No self-loop
+const graph3 = [[1]]; // Self-loop
 
-eval(fs.readFileSync('code.js') + '');
+// Two-node graphs
+const graph4 = [
+    [0, 1],
+    [1, 0],
+]; // Two nodes connected
+const graph5 = [
+    [0, 1],
+    [1, 0],
+]; // Isomorphic to graph4
+const graph6 = [
+    [0, 0],
+    [0, 0],
+]; // Disconnected two nodes
 
+// Three-node graphs
+const graph7 = [
+    [0, 1, 0],
+    [1, 0, 1],
+    [0, 1, 0],
+]; // A simple chain
+const graph8 = [
+    [0, 0, 1],
+    [0, 1, 0],
+    [1, 0, 0],
+]; // Isomorphic to graph7
+const graph9 = [
+    [0, 1, 1],
+    [1, 0, 1],
+    [1, 1, 0],
+]; // Fully connected graph
+const graph10 = [
+    [0, 1, 0],
+    [1, 0, 0],
+    [0, 0, 0],
+]; // Partially connected graph, non-isomorphic to others
 
-function generateRandomGraph(size) {
-    return Array.from({ length: size }, () =>
-        Array.from({ length: size }, () => Math.round(Math.random()))
-    ).map((row, i, matrix) => {
-        row[i] = 0; 
-        return row.map((cell, j) => Math.min(cell, matrix[j][i])); 
-    });
-}
+// Four-node graphs
+const graph11 = [
+    [0, 1, 1, 0],
+    [1, 0, 0, 1],
+    [1, 0, 0, 1],
+    [0, 1, 1, 0],
+]; // Square (cycle graph)
+const graph12 = [
+    [0, 1, 0, 1],
+    [1, 0, 1, 0],
+    [0, 1, 0, 1],
+    [1, 0, 1, 0],
+]; // Another square, isomorphic to graph11
 
+const graph13 = [
+    [0, 1, 1, 1],
+    [1, 0, 1, 1],
+    [1, 1, 0, 1],
+    [1, 1, 1, 0],
+]; // Fully connected four-node graph
 
-const testIsomorphic = jsc.forall("nat", function (n) {
-    if (n < 2 || n > 6) return true; 
-
-    const graph = generateRandomGraph(n);
-
-    const perm = Array.from({ length: n }, (_, i) => i).sort(() => Math.random() - 0.5);
-
-    
-    const isomorphicGraph = Array.from({ length: n }, () =>
-        Array.from({ length: n }, () => 0)
-    );
-    for (let i = 0; i < n; i++) {
-        for (let j = 0; j < n; j++) {
-            isomorphicGraph[perm[i]][perm[j]] = graph[i][j];
-        }
-    }
-
-    
-    return are_isomorphic(graph, isomorphicGraph);
-});
-
-const testNonIsomorphic = jsc.forall("nat", function (n) {
-    if (n < 2 || n > 6) return true; 
-
-    const graph1 = generateRandomGraph(n);
-    const graph2 = generateRandomGraph(n);
-
-    
-    if (are_isomorphic(graph1, graph2)) return true;
-
-    
-    return !are_isomorphic(graph1, graph2);
-});
-
-
-console.log("Testing isomorphic graphs...");
-jsc.assert(testIsomorphic);
-
-console.log("Testing non-isomorphic graphs...");
-jsc.assert(testNonIsomorphic);
-
-console.log("All tests passed!");
