@@ -74,7 +74,7 @@ const testCases = [
     { graph1: graph11, graph2: graph13, expected: false, description: "Four-node cycle graph vs fully connected graph" },
 ];
 
-// Test runner
+// This part of the code was, with testcases.foreach was the part I needed from chat to make sure it tested correctly. 
 function runTests() {
     console.log("Running tests...");
 
